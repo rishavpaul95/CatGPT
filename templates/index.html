@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CatGPT</title>
-    <link href="bootstrap.css" rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
 </head>
 
 <body>
     <div class="chat-container dark-mode">
         <div class="chat-header">
-            <img src="bot-avatar.png" alt="CatGPT Avatar">
+            <img src="{{ url_for('static', filename='images/bot-avatar.png') }}" alt="CatGPT Avatar">
             <h1>CatGPT</h1>
             <span class="author">&copy; Rishav Paul</span>
         </div>
@@ -24,11 +24,11 @@
         </div>
         <div class="input-section">
             <input type="text" id="user-input" class="user-input" placeholder="Send a message...">
-            <img id="submit-icon" src="paper-plane2.png" alt="Submit">
+            <img id="submit-icon" src="{{ url_for('static', filename='images/paper-plane2.png') }}" alt="Submit">
         </div>
     </div>
-    <script src="script.js"></script>
-    <script src="bootstrap.js"></script>
+    <script src="{{ url_for('static', filename='js/gpt_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 </body>
 
 </html>
