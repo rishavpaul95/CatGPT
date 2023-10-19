@@ -49,6 +49,13 @@ body {
     border-radius: 10px;
     scrollbar-width: thin;
     scrollbar-color: #666 #333;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color 0.5s;
+}
+
+.chat-content.scrolling {
+    scrollbar-color: #666 #333;
 }
 
 .chat-content::-webkit-scrollbar {
@@ -150,7 +157,7 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 45%;
     padding: 10px 20px;
     cursor: pointer;
     display: none;
@@ -173,4 +180,23 @@ body {
     100% {
         opacity: 0.5;
     }
+}
+
+
+/* Scrollbar animation */
+
+@keyframes scrollBarFadeOut {
+    0% {
+        scrollbar-color: transparent transparent;
+        /* Make the scrollbar transparent */
+    }
+    100% {
+        scrollbar-color: #666 #333;
+        /* Restore the scrollbar colors */
+    }
+}
+
+.chat-content.fade-out-scrollbar {
+    animation: scrollBarFadeOut 2s;
+    /* Delay the animation for 2 seconds */
 }

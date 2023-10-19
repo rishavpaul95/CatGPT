@@ -1,27 +1,68 @@
+// DOM elements
 const chatContainer = document.getElementById("chat");
 const userInput = document.getElementById("user-input");
 const submitIcon = document.getElementById("submit-icon");
 const chatContent = document.querySelector(".chat-content");
 const scrollToBottomButton = document.querySelector("#scroll-to-bottom");
-
-
 let manuallyScrolledToBottom = false;
 
+// Event listeners
+
+// Scroll event for chatContent
 chatContent.addEventListener("scroll", function() {
-    if (chatContent.scrollTop + chatContent.clientHeight < chatContent.scrollHeight) {
-        scrollToBottomButton.style.display = "block";
+    if (chatContent.scrollTop + chatContent.clientHeight >= chatContent.scrollHeight) {
         manuallyScrolledToBottom = false;
+        scrollToBottomButton.style.display = "none";
     } else {
-        scrollToBottomButton.style.display = manuallyScrolledToBottom ? "none" : "block";
+        scrollToBottomButton.style.display = "block";
     }
 });
 
+// Click event for the submitIcon
+submitIcon.addEventListener("click", sendMessage);
 
+// Keypress event for Enter key
+function handleKeyPress(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+}
+
+userInput.addEventListener("keypress", handleKeyPress);
+
+// Click event for scrollToBottomButton
+scrollToBottomButton.addEventListener("click", function() {
+    chatContent.scrollTop = chatContent.scrollHeight;
+    manuallyScrolledToBottom = false;
+    scrollToBottomButton.style.display = "none";
+});
+
+// Functions
+
+// Append a message to the chat
+function appendMessage(className, message) {
+    const chatMessage = document.createElement("li");
+    chatMessage.className = className;
+    chatMessage.textContent = message;
+    chatContainer.appendChild(chatMessage);
+    checkIfAtBottom();
+    return chatMessage;
+}
+
+// Check if the chat is scrolled to the bottom
+function checkIfAtBottom() {
+    if (chatContent.scrollTop + chatContent.clientHeight >= chatContent.scrollHeight) {
+        manuallyScrolledToBottom = false;
+        scrollToBottomButton.style.display = "none";
+    }
+}
+
+// Send a message
 function sendMessage() {
     const userMessage = userInput.value.trim();
 
     if (userMessage !== "") {
-        // Only disable the submit image
+        // Disable the submit image
         submitIcon.classList.add("disabled");
         submitIcon.removeEventListener("click", sendMessage); // Remove the click event listener
 
@@ -47,48 +88,7 @@ function sendMessage() {
     }
 }
 
-
-
-
-
-chatContent.addEventListener("scroll", function() {
-    if (chatContent.scrollTop + chatContent.clientHeight >= chatContent.scrollHeight) {
-        manuallyScrolledToBottom = false;
-        scrollToBottomButton.style.display = "none";
-    } else {
-        scrollToBottomButton.style.display = "block";
-    }
-});
-
-submitIcon.addEventListener("click", sendMessage);
-
-
-function handleKeyPress(e) {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
-}
-
-userInput.addEventListener("keypress", handleKeyPress);
-
-
-function appendMessage(className, message) {
-    const chatMessage = document.createElement("li");
-    chatMessage.className = className;
-    chatMessage.textContent = message;
-    chatContainer.appendChild(chatMessage);
-    checkIfAtBottom();
-    return chatMessage;
-}
-
-function checkIfAtBottom() {
-    if (chatContent.scrollTop + chatContent.clientHeight >= chatContent.scrollHeight) {
-        manuallyScrolledToBottom = false;
-        scrollToBottomButton.style.display = "none";
-    }
-}
-
-
+// Generate bot responses
 function generateMeows(length) {
     if (length <= 6) {
         return "Meow";
@@ -109,15 +109,10 @@ function generateMeows(length) {
     return meowArray.join(" ");
 }
 
-scrollToBottomButton.addEventListener("click", function() {
-    chatContent.scrollTop = chatContent.scrollHeight;
-    manuallyScrolledToBottom = false;
-    scrollToBottomButton.style.display = "none";
-});
-
+// Check if at the bottom on page load
 checkIfAtBottom();
 
-
+// Hide the "scroll to bottom" button after 3 seconds
 setTimeout(() => {
     scrollToBottomButton.style.display = "none";
 }, 3000);
