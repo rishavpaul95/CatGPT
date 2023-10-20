@@ -1,8 +1,16 @@
+# Made with love on a random puja 2023 by Rishav Paul
+# Uses characterAI for responses
+
+
+
+
 from flask import Flask, request, jsonify, render_template
 import importlib
 import subprocess
 from flask_cors import CORS
 from characterai import PyCAI
+import threading
+import webview
 
 # List of libraries to check and install
 libraries_to_check = ["characterai", "websockets", "flask_cors"]
@@ -51,5 +59,10 @@ def process_message():
 
         return jsonify({'bot_response': text})
 
+def start_flask_app():
+    app.run(debug=False)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    threading.Thread(target=start_flask_app).start()
+    webview.create_window("CatGPT by Rishav Paul", "http://127.0.0.1:5000", width=600, height=800)
+    webview.start()
