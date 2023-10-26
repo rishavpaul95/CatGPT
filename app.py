@@ -10,9 +10,9 @@ import webview
 app = Flask(__name__, static_folder='./static', template_folder='./templates')
 CORS(app)
 
-client = PyCAI('89b526241ac2bd889ccbba7dab8e9782c201373c')
+client = PyCAI('your_api_key')
 
-char = 'hTP85l95BwEyURXYCKMJ9WQ54eRrzsjHUr4gJG-SYng'
+char = 'character_key'
 
 chat = client.chat.get_chat(char)
 
