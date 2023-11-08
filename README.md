@@ -35,6 +35,13 @@ Navigate to the project directory.
 Install the required Python libraries using pip.
 
 Usage
+
+Uses 
+https://github.com/kramcat/CharacterAI.git
+
+1. Check and see how to get a token and paste token in the code. 
+2. Get the code and paste the token in the app.py
+
 Run the Python file to start CatGPT.
 
 >python app.py
