@@ -45,13 +45,13 @@ A new window will open with CatGPT running inside. You can now have delightful c
 How It Works
 CatGPT uses the CharacterAI API from OpenAI to generate responses with a cat-like personality. It processes user input, communicates with the API, and displays the AI's responses in the webview window.
 
-*Acknowledgments*
+#Acknowledgments
 CatGPT was made with love by Rishav Paul on October 20, 2023.
 
-*License*
+#License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-*About the Author*
+#About the Author
 Rishav Paul is a passionate developer who enjoys creating fun and innovative applications. Connect with him on GitHub to stay updated with his latest projects.
 
 Enjoy your conversations with CatGPT, your feline AI assistant! 🐱
